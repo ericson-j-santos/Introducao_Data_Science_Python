@@ -1,0 +1,88 @@
+[
+  {
+    "name": "Visão geral identifica ausência de Databricks e mantém custo zero",
+    "sanity": true,
+    "viewport": "desktop",
+    "covers": [
+      "visão geral",
+      "indicadores de custo zero",
+      "bloqueios reais",
+      "pipeline Bronze Silver Gold"
+    ],
+    "description": "Verifica estado inicial conservador, nenhuma alegação de execução e três camadas visíveis.",
+    "steps": [
+      "Abrir a página inicial no navegador",
+      "Conferir os cartões Bronze, Silver e Gold e o indicador de custo",
+      "Conferir o aviso de ambiente não conectado e a ação Iniciar preflight"
+    ],
+    "expected": "Três camadas exibidas, custo R$ 0,00, estado de planejamento visível e nenhuma execução do Databricks anunciada."
+  },
+  {
+    "name": "Fila filtra camadas e abre detalhes",
+    "viewport": "desktop",
+    "covers": [
+      "fila de etapas",
+      "filtros por camada",
+      "detalhes de origem destino e evidência",
+      "dependências"
+    ],
+    "description": "Filtra a fila e navega até uma etapa sem alterá-la.",
+    "steps": [
+      "Abrir Fila de etapas",
+      "Selecionar Bronze no filtro de camada",
+      "Abrir a etapa Ingestão Bronze"
+    ],
+    "expected": "A fila mostra BR-01 e o detalhe exibe origem CSV sintético, destino bronze/pedidos_raw, dependência PF-01 e bloqueio de ambiente."
+  },
+  {
+    "name": "Teste negativo impede avanço sem evidência",
+    "viewport": "mobile",
+    "covers": [
+      "bloqueio fail-closed",
+      "validação negativa de preparação",
+      "restrição de status"
+    ],
+    "description": "Não deve permitir preparar etapa sem referência nem responsável.",
+    "steps": [
+      "Abrir Fluxo guiado e selecionar PF-01",
+      "Deixar Responsável e Referência de evidência em branco",
+      "Selecionar Registrar preparação"
+    ],
+    "expected": "Mensagem exige os dois campos e o estado da etapa permanece Planejado."
+  },
+  {
+    "name": "Preparação registrada sem confundir com execução",
+    "viewport": "desktop",
+    "covers": [
+      "formulário de preparação",
+      "histórico de transições",
+      "separação entre preparado e validado"
+    ],
+    "description": "Registra preparação documental e confirma seu histórico no navegador.",
+    "steps": [
+      "Abrir Fluxo guiado em PF-01",
+      "Preencher Responsável com Equipe DEV e Referência de evidência com DOC-TESTE-001",
+      "Clicar Registrar preparação, depois abrir Evidências e logs"
+    ],
+    "expected": "PF-01 fica Preparado, mensagem esclarece que não prova execução e histórico registra Atualização de etapa."
+  },
+  {
+    "name": "Autochecagem e checkpoint exportável",
+    "viewport": "desktop",
+    "covers": [
+      "autochecagem sintética",
+      "teste positivo e negativo do painel",
+      "replay idempotente local",
+      "checkpoint SHA-256",
+      "exportação e readback local"
+    ],
+    "description": "Verifica automonitoramento e permite exportar um arquivo de checkpoint sem chamar Databricks.",
+    "steps": [
+      "Abrir Evidências e logs",
+      "Clicar Executar autochecagem local e verificar os resultados",
+      "Clicar Exportar JSON e verificar download de checkpoint-lakehouse-zero-*.json",
+      "Reimportar o mesmo arquivo baixado e observar confirmação de hash"
+    ],
+    "expected": "Autochecagem local passa, checkpoint é baixado com SHA-256 e a reimportação confirma integridade sem afirmar validação externa."
+  }
+]
