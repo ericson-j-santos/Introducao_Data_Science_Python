@@ -1,0 +1,38 @@
+name: Lakehouse Zero - contratos locais sem Docker
+
+on:
+  push:
+    branches:
+      - feature/lakehouse-zero-source-20261110
+    paths:
+      - 'projetos/lakehouse-zero/**'
+      - '.github/workflows/lakehouse-zero.yml'
+  pull_request:
+    paths:
+      - 'projetos/lakehouse-zero/**'
+      - '.github/workflows/lakehouse-zero.yml'
+
+permissions:
+  contents: read
+
+jobs:
+  pipeline-local-tests:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - name: Checkout SHA
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+        with:
+          persist-credentials: false
+      - name: Python
+        uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
+        with:
+          python-version: '3.12'
+      - name: Python syntax
+        working-directory: projetos/lakehouse-zero/pipeline
+        run: python -m compileall -q src notebooks tests
+      - name: Local contract E2E, controls and replay (not Databricks)
+        working-directory: projetos/lakehouse-zero/pipeline
+        run: python -m unittest discover -s tests -v
