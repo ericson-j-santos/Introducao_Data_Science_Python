@@ -1,0 +1,11 @@
+test_cenario_positivo_negativo (test_pipeline.ContratoTests.test_cenario_positivo_negativo) ... ok
+test_colisao_de_evento_falha_fechado (test_pipeline.ContratoTests.test_colisao_de_evento_falha_fechado) ... ok
+test_detector_de_evidencia_rejeita_gold_corrompida (test_pipeline.ContratoTests.test_detector_de_evidencia_rejeita_gold_corrompida) ... ok
+test_e2e_sqlite_replay_e_readback (test_pipeline.ContratoTests.test_e2e_sqlite_replay_e_readback) ... ok
+test_fixture_nao_contem_dados_pessoais (test_pipeline.ContratoTests.test_fixture_nao_contem_dados_pessoais) ... ok
+test_ultima_versao_invalida_rejeita_pedido (test_pipeline.ContratoTests.test_ultima_versao_invalida_rejeita_pedido) ... ok
+
+----------------------------------------------------------------------
+Ran 6 tests in 0.039s
+
+OK
