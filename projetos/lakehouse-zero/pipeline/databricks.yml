@@ -1,0 +1,50 @@
+# Template somente. Não executar `databricks bundle deploy/run` sem confirmar Free Edition.
+bundle:
+  name: fluxo-medallion-zero
+
+variables:
+  prefixo:
+    description: Prefixo isolado para objetos sintéticos no esquema default
+    default: demo_medallion_exemplo
+
+resources:
+  jobs:
+    medallion_sintetico:
+      name: fluxo-medallion-sintetico-manual
+      max_concurrent_runs: 1
+      tasks:
+        - task_key: bronze
+          notebook_task:
+            notebook_path: ./notebooks/medallion.py
+            base_parameters:
+              etapa: bronze
+              prefixo: ${var.prefixo}
+        - task_key: silver
+          depends_on:
+            - task_key: bronze
+          notebook_task:
+            notebook_path: ./notebooks/medallion.py
+            base_parameters:
+              etapa: silver
+              prefixo: ${var.prefixo}
+        - task_key: gold
+          depends_on:
+            - task_key: silver
+          notebook_task:
+            notebook_path: ./notebooks/medallion.py
+            base_parameters:
+              etapa: gold
+              prefixo: ${var.prefixo}
+        - task_key: validar
+          depends_on:
+            - task_key: gold
+          notebook_task:
+            notebook_path: ./notebooks/medallion.py
+            base_parameters:
+              etapa: validar
+              prefixo: ${var.prefixo}
+
+targets:
+  dev:
+    mode: development
+    default: true
