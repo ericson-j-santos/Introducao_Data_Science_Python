@@ -1,0 +1,12 @@
+{
+  ".gitignore": "ac7d214cd715a42e3f5044d5881e75ffed0b605d70e58d303adf4beef0581067",
+  "README.md": "aefd9ab691af572062a5bbfe8aca2b0f6048651567ebd686252322f285648233",
+  "databricks.yml": "ada4132902bab5d6a0d1b66e1cfb99ff6e8fa274c9ece413a3cfb9867b6b05e3",
+  "evidencias/resultado-local.json": "879fdc442fd828a979db24ee8dfa6aa6f2863aee2d1ad697c096c4f119e90988",
+  "evidencias/testes.txt": "f38aa9d45d5ac4acc9ebde867b17b9f027cc9f65bdb8a84110b7e9e643021d01",
+  "notebooks/medallion.py": "817fe522151dff4b837b334d47660fdc1e1b415f79b53a8fb13663d4aa03bded",
+  "src/__init__.py": "b59709afd9adf96b76570be5eeda5856decad669ef8903da8875df9b5dcbad57",
+  "src/contrato.py": "144b597a8f4247d55596e166d7dc5a5a4a61734d469fc7e71714bdb2af408128",
+  "src/demo_local.py": "6e59821194f12dd3405b3e5fd5829897062bacb7e79641571b5f4e01fac6b9c9",
+  "tests/test_pipeline.py": "9310da2abf2d694cf790ea5bfd499ada6d3040cf657b7210fcde46fe6cc7d928"
+}
