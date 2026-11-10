@@ -1,0 +1,57 @@
+{
+  "estado": "PARCIAL: E2E local passou; Databricks não executado",
+  "ambiente": "sandbox Python 3.13.5 / SQLite; sem Spark/Delta",
+  "data": "2026-11-09",
+  "regras": {
+    "versao": "1.6.20",
+    "sha": "86abe65b22781c2f608a7d7286ce3a28cd48aaaf"
+  },
+  "testes": {
+    "total": 6,
+    "aprovados": 6,
+    "negativo_colisao": "passou",
+    "negativo_readback_corrompido": "passou",
+    "idempotencia_replay": "passou",
+    "sintaxe_python": "passou",
+    "yaml_estrutura_dag": "passou"
+  },
+  "readback_local": {
+    "camadas": {
+      "bronze": 7,
+      "silver": 3,
+      "rejeitados": 3,
+      "gold": 3
+    },
+    "valor_total": "80.00",
+    "gold": [
+      {
+        "data_pedido": "2026-10-01",
+        "categoria": "Eletronicos",
+        "pedidos": 1,
+        "unidades": 1,
+        "valor_total": "20.00"
+      },
+      {
+        "data_pedido": "2026-10-01",
+        "categoria": "Livros",
+        "pedidos": 1,
+        "unidades": 3,
+        "valor_total": "30.00"
+      },
+      {
+        "data_pedido": "2026-10-02",
+        "categoria": "Livros",
+        "pedidos": 1,
+        "unidades": 2,
+        "valor_total": "30.00"
+      }
+    ]
+  },
+  "databricks": {
+    "execucao": "nao realizada",
+    "workspace": "nao conectado",
+    "cli_validate": "nao realizado",
+    "job_run_id": null
+  },
+  "custo_adicional": "R$ 0,00; nenhum recurso Databricks provisionado"
+}
