@@ -1,0 +1,1 @@
+"""Protótipo medallion sintético."""
